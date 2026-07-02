@@ -1,184 +1,164 @@
 <style>
-:root{
-  --brand-blue: #003399; /* 大手金融機関をイメージしたブランドカラー */
+:root {
   --ink: #333333;
-  --paper: #f4f7f9;
-  --panel: #ffffff;
+  --paper: #ffffff;
+  --brand-orange: #d97b29; /* 画像の警告文の色 */
   --line: #cccccc;
-  --warn: #d9534f;
-  --warn-bg: #f9f2f2;
-  --sans: "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --sans: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
 }
-*{box-sizing:border-box;}
 
-.train-root {
-  font-family: var(--sans);
-  background: var(--paper);
-  color: var(--ink);
+* { box-sizing: border-box; }
+
+body {
   margin: 0;
-  padding: 0;
-  line-height: 1.4;
+  padding: 20px;
+  background-color: var(--paper);
+  font-family: var(--sans);
+  color: var(--ink);
 }
 
-/* 1. 視覚的な信頼感の向上（ブランディングの模倣） */
-.header-brand {
-  background: var(--brand-blue);
-  color: #fff;
-  padding: 15px 20px;
+.container {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/* タイトルと警告文 */
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+  border-bottom: none;
+}
+
+.ssl-notice {
+  color: var(--brand-orange);
+  font-size: 0.95rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* カードブランドロゴのプレースホルダー */
+.brand-logos {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  gap: 5px;
+  margin-bottom: 25px;
 }
-.header-brand .logo {
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 0.05em;
-}
-.security-badge {
-  font-size: 11px;
-  background: rgba(255,255,255,0.2);
-  padding: 4px 8px;
+.brand-logo {
+  border: 1px solid #ddd;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #666;
   border-radius: 2px;
 }
 
-.wrap {
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 0 15px;
+/* フォーム要素 */
+.form-group {
+  margin-bottom: 15px;
 }
 
-/* 緊急性を煽る警告メッセージ */
-.alert-box {
-  background: var(--warn-bg);
-  border: 1px solid var(--warn);
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  font-size: 13px;
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
-.alert-box b { color: var(--warn); }
 
-.card {
-  background: var(--panel);
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 8px;
   border: 1px solid var(--line);
   border-radius: 4px;
-  padding: 25px;
+  font-size: 1rem;
 }
 
-.field { margin-bottom: 18px; }
-.field label {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 6px;
+/* 有効期限・生年月日の横並びレイアウト */
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
-/* 4. 訓練用要素の「非表示化」：(ダミー)等の文言を排除 */
-.field input, .field select {
+.row select {
+  flex: 1;
+}
+
+/* 送信ボタン（本物っぽく） */
+.submit-btn {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #aaa;
-  border-radius: 3px;
-  font-size: 15px;
-}
-
-.row2 { display: flex; gap: 10px; }
-.row2 > div { flex: 1; }
-
-.btn {
-  width: 100%;
-  padding: 15px;
-  border: none;
+  padding: 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  background: var(--brand-blue);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
 }
-
-.footer-links {
-  margin-top: 30px;
-  font-size: 11px;
-  color: #888;
-  text-align: center;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
+.submit-btn:hover {
+  background-color: #e0e0e0;
 }
 </style>
 
-<div class="train-root">
-  <!-- 訓練リボンを削除し、本物らしいヘッダーを配置 -->
-  <header class="header-brand">
-    <div class="logo">GLOBAL CARD ONLINE</div>
-    <div class="security-badge">🔒 SSL 256-bit Secure</div>
-  </header>
+<div class="container">
+  <h2>お支払い方法の更新</h2>
+  
+  <!-- 画像の文言を忠実に再現 -->
+  <p class="ssl-notice">
+    お客様の個人情報を安全に送信するためにSSL暗号化通信を利用し、第三者によるデータの改ざんや盗用を防いでいます。
+  </p>
 
-  <div class="wrap">
-    <div class="alert-box">
-      <b>【重要】お客様のアカウントに異常な活動が検知されました。</b><br>
-      不正利用防止のため、一時的にアカウントを制限しております。引き続きサービスをご利用いただくには、以下のフォームから本人確認およびお支払い情報の再登録を行ってください。
-    </div>
-
-    <div class="card">
-      <form id="phish-form">
-        <!-- 3. 入力フォームの「網羅性」：個人情報とカード情報を統合 -->
-        <div class="field">
-          <label>ログインID</label>
-          <input type="text" placeholder="IDまたはメールアドレス">
-        </div>
-        <div class="field">
-          <label>パスワード</label>
-          <input type="password" placeholder="••••••••">
-        </div>
-
-        <hr style="border:0; border-top:1px solid #eee; margin:25px 0;">
-
-        <div class="field">
-          <label>カード名義人</label>
-          <input type="text" placeholder="TARO YAMADA">
-        </div>
-        <div class="field">
-          <label>カード番号</label>
-          <input type="text" placeholder="0000 0000 0000 0000">
-        </div>
-        
-        <div class="row2 field">
-          <div>
-            <label>有効期限</label>
-            <select><option>月</option></select>
-          </div>
-          <div>
-            <label>&nbsp;</label>
-            <select><option>年</option></select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>セキュリティコード(CVV)</label>
-          <input type="text" placeholder="カード背面の3桁">
-        </div>
-
-        <!-- 本人認証サービス(3Dセキュア)のパスワードも要求し網羅性を高める -->
-        <div class="field">
-          <label>本人認証サービス(Vpass/SecureCode)パスワード</label>
-          <input type="password" placeholder="認証用パスワード">
-        </div>
-
-        <button class="btn" type="button" onclick="handleVerify()">本人確認を完了する</button>
-      </form>
-    </div>
-
-    <div class="footer-links">
-      プライバシーポリシー | 利用規約 | 個人情報の取り扱いについて<br>
-      Copyright © Global Card Services Co., Ltd. All Rights Reserved.
-    </div>
+  <!-- カードブランドロゴ（実際は画像を使用） -->
+  <div class="brand-logos">
+    <span class="brand-logo" style="color:#003399;">VISA</span>
+    <span class="brand-logo" style="color:#eb001b;">Mastercard</span>
+    <span class="brand-logo" style="color:#007bc1;">AMEX</span>
+    <span class="brand-logo" style="color:#000000;">Diners</span>
+    <span class="brand-logo" style="color:#ff6600;">JCB</span>
   </div>
-</div>
 
-<script>
-function handleVerify() {
-  alert("本人確認を受け付けました。再審査のため、反映まで24時間ほどかかる場合があります。");
-  // 実際にはどこにも送信されませんが、ユーザーを安心させるメッセージを表示
-}
-</script>
+  <form id="payment-form">
+    <div class="form-group">
+      <label>クレジットカード名義人</label>
+      <input type="text" name="holder_name">
+    </div>
+
+    <div class="form-group">
+      <label>カード番号</label>
+      <input type="text" name="card_number">
+    </div>
+
+    <div class="form-group">
+      <label>有効期限:</label>
+      <div class="row">
+        <select name="exp_month">
+          <option value="01">01</option>
+          <!-- 省略 -->
+        </select>
+        <select name="exp_year">
+          <option value="2021">2021</option>
+          <!-- 省略 -->
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>セキュリティコード</label>
+      <input type="text" placeholder="CVV/CVV2">
+    </div>
+
+    <div class="form-group">
+      <label>生年月日</label>
+      <div class="row">
+        <select name="birth_day"><option>日</option></select>
+        <select name="birth_month"><option>月</option></select>
+        <select name="birth_year"><option>年</option></select>
+      </div>
+    </div>
+
+    <button type="button" class="submit-btn" onclick="alert('情報の更新が完了しました。')">
+      情報を更新する
+    </button>
+  </form>
+</div>
