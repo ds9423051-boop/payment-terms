@@ -2,7 +2,7 @@
 :root {
   --ink: #333333;
   --paper: #ffffff;
-  --brand-orange: #d97b29; /* 画像の警告文の色 */
+  --brand-orange: #d97b29; /* 画像[2]の警告文の色 */
   --line: #cccccc;
   --sans: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
 }
@@ -22,13 +22,13 @@ body {
   margin: 0 auto;
 }
 
-/* タイトルと警告文 */
 h2 {
   font-size: 1.25rem;
   margin-bottom: 15px;
   border-bottom: none;
 }
 
+/* 画像[2]にあるSSLの警告文のスタイル */
 .ssl-notice {
   color: var(--brand-orange);
   font-size: 0.95rem;
@@ -37,7 +37,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* カードブランドロゴのプレースホルダー */
+/* カードブランドの並び */
 .brand-logos {
   display: flex;
   gap: 5px;
@@ -52,7 +52,6 @@ h2 {
   border-radius: 2px;
 }
 
-/* フォーム要素 */
 .form-group {
   margin-bottom: 15px;
 }
@@ -65,16 +64,15 @@ label {
 }
 
 input[type="text"],
-input[type="password"],
 select {
   width: 100%;
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: 4px;
   font-size: 1rem;
+  background-color: #fff;
 }
 
-/* 有効期限・生年月日の横並びレイアウト */
 .row {
   display: flex;
   gap: 10px;
@@ -84,7 +82,6 @@ select {
   flex: 1;
 }
 
-/* 送信ボタン（本物っぽく） */
 .submit-btn {
   width: 100%;
   padding: 12px;
@@ -96,20 +93,15 @@ select {
   cursor: pointer;
   margin-top: 10px;
 }
-.submit-btn:hover {
-  background-color: #e0e0e0;
-}
 </style>
 
 <div class="container">
   <h2>お支払い方法の更新</h2>
   
-  <!-- 画像の文言を忠実に再現 -->
   <p class="ssl-notice">
     お客様の個人情報を安全に送信するためにSSL暗号化通信を利用し、第三者によるデータの改ざんや盗用を防いでいます。
   </p>
 
-  <!-- カードブランドロゴ（実際は画像を使用） -->
   <div class="brand-logos">
     <span class="brand-logo" style="color:#003399;">VISA</span>
     <span class="brand-logo" style="color:#eb001b;">Mastercard</span>
@@ -121,24 +113,33 @@ select {
   <form id="payment-form">
     <div class="form-group">
       <label>クレジットカード名義人</label>
-      <input type="text" name="holder_name">
+      <input type="text" placeholder="TARO YAMADA">
     </div>
 
     <div class="form-group">
       <label>カード番号</label>
-      <input type="text" name="card_number">
+      <input type="text" placeholder="0000 0000 0000 0000">
     </div>
 
+    <!-- 有効期限の選択（1〜12月、2026〜2035年） -->
     <div class="form-group">
       <label>有効期限:</label>
       <div class="row">
-        <select name="exp_month">
-          <option value="01">01</option>
-          <!-- 省略 -->
+        <select>
+          <option value="">月</option>
+          <script>
+            for(let i=1; i<=12; i++) {
+              document.write(`<option value="${i.toString().padStart(2,'0')}">${i.toString().padStart(2,'0')}</option>`);
+            }
+          </script>
         </select>
-        <select name="exp_year">
-          <option value="2021">2021</option>
-          <!-- 省略 -->
+        <select>
+          <option value="">年</option>
+          <script>
+            for(let i=2026; i<=2035; i++) {
+              document.write(`<option value="${i}">${i}</option>`);
+            }
+          </script>
         </select>
       </div>
     </div>
@@ -148,12 +149,34 @@ select {
       <input type="text" placeholder="CVV/CVV2">
     </div>
 
+    <!-- 生年月日の選択 -->
     <div class="form-group">
       <label>生年月日</label>
       <div class="row">
-        <select name="birth_day"><option>日</option></select>
-        <select name="birth_month"><option>月</option></select>
-        <select name="birth_year"><option>年</option></select>
+        <select>
+          <option value="">年</option>
+          <script>
+            for(let i=2010; i>=1940; i--) {
+              document.write(`<option value="${i}">${i}</option>`);
+            }
+          </script>
+        </select>
+        <select>
+          <option value="">月</option>
+          <script>
+            for(let i=1; i<=12; i++) {
+              document.write(`<option value="${i}">${i}</option>`);
+            }
+          </script>
+        </select>
+        <select>
+          <option value="">日</option>
+          <script>
+            for(let i=1; i<=31; i++) {
+              document.write(`<option value="${i}">${i}</option>`);
+            }
+          </script>
+        </select>
       </div>
     </div>
 
